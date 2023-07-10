@@ -46,7 +46,7 @@ app.post("/lead", async (req, res) => {
 });
 app.get("/section/active", async (req, res) => {
     try {
-        const response = await db.query("SELECT * FROM leads.section WHERE status = 'true'");
+        const response = await db.query("SELECT * FROM leads.section s WHERE status = 1 ORDER BY __createdtime__ DESC");
         res.status(200).send(response);
     } catch (error) {
         res.status(500).send("something went wrong");
